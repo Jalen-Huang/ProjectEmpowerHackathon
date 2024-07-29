@@ -1,0 +1,11 @@
+.SideBar {
+    color: red;
+    background-color: red;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+}
