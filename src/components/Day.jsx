@@ -2,43 +2,84 @@ import { useState } from "react";
 import TimeTableEventButton from "./TimeTableEventButton";
 import TimeTableGrid from "./TimeTableGrid";
 import DayHeader from "./DayHeader";
+import Highlight from "./Highlight";
 
 const Day = ({ hours, day }) => {
   const [tasks, setTasks] = useState([]);
+  const [highlights, setHighlights] = useState([]);
   const [startIndex, setStartIndex] = useState(-1);
   const [mouseDown, setMouseDown] = useState(false);
   const [endIndex, setEndIndex] = useState(-1);
+  const [deleteIndex, setDeleteIndex] = useState(-1);
 
-  let handleMouseUp = (event) => {
+  // Delete tasks from worklist
+  let handleDeleteTask = (event) => {
     setTasks(
-      tasks.concat({
-        ss: startIndex,
-        se: endIndex + 1,
-        color: "rgba(127,0,255,0.7)",
-        text: "Volley ball practice",
+      tasks.filter((item) => {
+        item.ss !== deleteIndex;
       })
     );
+  };
+  let handleDeleteGetIndexe = (event, si) => {
+    setDeleteIndex(si);
+  };
 
-    console.log("index:" + startIndex);
+  // Handle creation of tasks
+  let handleMouseUp = (event) => {
+    setHighlights([]);
+
+    if (mouseDown) {
+      if (startIndex <= endIndex) {
+        setTasks(
+          tasks.concat({
+            ss: startIndex,
+            se: endIndex + 1,
+            color: "rgba(127,0,255,0.7)",
+            text: "Volley ball practice",
+          })
+        );
+      } else {
+        setTasks(
+          tasks.concat({
+            se: startIndex + 1,
+            ss: endIndex,
+            color: "rgba(127,0,255,0.7)",
+            text: "Volley ball practice",
+          })
+        );
+      }
+    }
+
     setMouseDown(false);
   };
 
   let handleMouseOver = (event, index) => {
     if (mouseDown) {
-      event.target.style.backgroundColor = "rgba(127,0,255,0.2)";
+      setHighlights(highlights.concat({ id: index }));
+      setEndIndex(index);
     }
-    setEndIndex(index);
+    console.log(highlights);
   };
 
   let handleMouseDown = (event, index) => {
-    event.target.style.backgroundColor = "rgba(127,0,255,0.2)";
     setMouseDown(true);
     setStartIndex(index);
+    setEndIndex(index);
+    setHighlights(highlights.concat({ id: index }));
   };
 
+  let handleReset = (event) => {
+    setMouseDown(false);
+    setHighlights([]);
+  };
+
+  // Handle highlight
+
   return (
-    <div className="Day">
+    <div className="Day" onMouseLeave={handleReset}>
       <DayHeader>{day}</DayHeader>
+
+      {/* creates grid and add indices */}
       {(() => {
         const lines = [];
 
@@ -55,13 +96,21 @@ const Day = ({ hours, day }) => {
         }
         return lines;
       })()}
+      {/* end */}
+
+      {highlights.map((item) => (
+        <Highlight i={item.id} mouseUp={handleMouseUp} />
+      ))}
 
       {tasks.map((item) => (
         <TimeTableEventButton
+          handlMouseEnter={handleReset}
           se={item.se}
           ss={item.ss}
           color={item.color}
           text={item.text}
+          deleteIndex={handleDeleteGetIndexe}
+          deleteTask={handleDeleteTask}
         />
       ))}
     </div>

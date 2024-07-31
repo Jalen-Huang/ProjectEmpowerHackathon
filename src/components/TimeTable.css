@@ -36,6 +36,12 @@
 
 }
 
+.Highlight {
+    grid-column: 1/2;
+    background-color: rgba(127,0,255,0.2);
+    z-index: 1;
+} 
+
 .Task {
   
     background-color: red;
@@ -48,9 +54,10 @@
 .HourLine {
     border-bottom: 1px dashed rgb(12, 227, 255);
     border-top: 1px dashed rgb(12, 227, 255);
+    background-color: rgba(175, 236, 255, 0.2);
     opacity: 100%;
     grid-column: 1/2;
-
+    z-index: 0;
 }
 
 .TimeTable {

@@ -1,15 +1,31 @@
 import React from "react";
 
-const TimeTableEventButton = ({ se, ss, color, text }) => {
+const TimeTableEventButton = ({
+  se,
+  ss,
+  color,
+  text,
+  deleteTask,
+  deleteIndex,
+  handlMouseEnter,
+}) => {
   return (
     <div
+      onMouseEnter={handlMouseEnter}
       className="Task"
       style={{
         backgroundColor: color,
         gridRow: ss + "/" + se,
       }}
     >
-      {text.length > 15 ? text.substring(0, 15) + "..." : text}
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        onClick={deleteTask}
+        onMouseDown={(e) => deleteIndex(e, ss)}
+      ></button>
+      <p>{text.length > 15 ? text.substring(0, 15) + "..." : text}</p>
     </div>
   );
 };
