@@ -7,7 +7,7 @@ const HourLegend = () => {
       {(() => {
         const lines = [];
 
-        for (let i = 0; i <= 24; i++) {
+        for (let i = 0; i < 24; i++) {
           lines.push(<p className="HourText">{i}am</p>);
         }
 

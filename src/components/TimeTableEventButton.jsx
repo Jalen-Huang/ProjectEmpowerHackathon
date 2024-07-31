@@ -1,13 +1,15 @@
 import React from "react";
 
-const TimeTableEventButton = ({ onClick, children }) => {
+const TimeTableEventButton = ({ se, ss, color, text }) => {
   return (
-    <div className="HourLine" onClick={onClick}>
-      {children.length <= 12 ? (
-        <p>{children}</p>
-      ) : (
-        <p>{children.substring(0, 12) + "..."}</p>
-      )}
+    <div
+      className="Task"
+      style={{
+        backgroundColor: color,
+        gridRow: ss + "/" + se,
+      }}
+    >
+      {text.length > 15 ? text.substring(0, 15) + "..." : text}
     </div>
   );
 };

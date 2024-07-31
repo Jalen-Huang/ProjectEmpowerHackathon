@@ -7,7 +7,7 @@ const TimeTable = () => {
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
   return (
-    <div class="TimeTable">
+    <div className="TimeTable">
       <HourLegend />
       {days.map((item) => (
         <Day hours={24} day={item} />
