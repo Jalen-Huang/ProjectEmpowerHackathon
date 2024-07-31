@@ -2,9 +2,10 @@ import React from "react";
 import "./TimeTable.css";
 import Day from "./Day";
 import HourLegend from "./HourLegend";
+import DayHeader from "./DayHeader";
 
 const TimeTable = () => {
-  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  const days = ["MON", "TUE", "WED", "THU", "FRi"];
 
   return (
     <div className="TimeTable">

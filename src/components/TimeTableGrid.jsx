@@ -1,11 +1,17 @@
 import React from "react";
 
-const TimeTableGrid = ({ onClickFunc, index, onMouseDownfunc }) => {
+const TimeTableGrid = ({
+  onClickFunc,
+  index,
+  onMouseDownFunc,
+  onMouseOverFunc,
+}) => {
   return (
     <div
       className="HourLine"
-      onClick={onClickFunc}
-      onMouseDown={(e) => onMouseDownfunc(e, index)}
+      onMouseUp={onClickFunc}
+      onMouseDown={(e) => onMouseDownFunc(e, index)}
+      onMouseOver={(e) => onMouseOverFunc(e, index)}
       style={{
         gridRow: index + "/" + (index + 1),
       }}
