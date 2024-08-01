@@ -1,20 +1,34 @@
 .SideBarButton {
-    background-color: #17252A;
-    color: white;
+    background-color: #DEF2F1;
+    color: #2B7A78;
     padding: 5px 15px;
-    border-radius: 5px;
-    outline: 0;
-    border: 0; 
+    border-radius: 8px;
+    border: 4px solid #2B7A78;
     text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 1px;
     margin: 10px 0px;
     cursor: pointer;
     box-shadow: 0px 2px 2px lightgray;
     transition: ease background-color 250ms;
-    &:hover {
-        color: #17252A;
-        background-color: #DEF2F1};
-    }
-    &:disabled {
-        cursor: default;
-        opacity: 0.7;
+    
+}
+
+.SideBarButton:hover {
+    color: #FEFFFF;
+    background-color: #2B7A78;
+
+    rect {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2;
+        stroke-dasharray: 422, 0;
+        transition: all 0.35s linear;
+      }
+}
+
+.SideBarButton:active {
+    transform: translateY(2px);
 }
