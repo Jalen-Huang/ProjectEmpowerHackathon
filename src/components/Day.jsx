@@ -16,13 +16,16 @@ const Day = ({ hours, day, can, setCan }) => {
 
   // Delete tasks from worklist
   let handleDeleteTask = (event) => {
-    setTasks(
-      tasks.filter((item) => {
-        item.ss !== deleteIndex;
-      })
-    );
+    let del;
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].ss === deleteIndex) {
+        del = i;
+      }
+    }
+    setTasks(tasks.toSpliced(del, 1));
   };
-  let handleDeleteGetIndexe = (event, si) => {
+
+  let handleDeleteGetIndex = (event, si) => {
     setDeleteIndex(si);
   };
 
@@ -97,50 +100,52 @@ const Day = ({ hours, day, can, setCan }) => {
   // Handle highlight
 
   return (
-    <div className="Day" onMouseLeave={handleReset}>
-      <DayHeader>{day}</DayHeader>
-      <div className="test"></div>
-      {/* creates grid and add indices */}
-      {(() => {
-        const lines = [];
+    <>
+      <div className="Day" onMouseLeave={handleReset}>
+        <DayHeader>{day}</DayHeader>
+        <div className="test"></div>
+        {/* creates grid and add indices */}
+        {(() => {
+          const lines = [];
 
-        for (let i = 0; i < hours; i++) {
-          lines.push(
-            <TimeTableGrid
-              key={i}
-              onClickFunc={handleMouseUp}
-              onMouseDownFunc={handleMouseDown}
-              onMouseOverFunc={handleMouseOver}
-              index={i + 2}
-            ></TimeTableGrid>
-          );
-        }
-        return lines;
-      })()}
-      {/* end */}
+          for (let i = 0; i < hours; i++) {
+            lines.push(
+              <TimeTableGrid
+                key={i}
+                onClickFunc={handleMouseUp}
+                onMouseDownFunc={handleMouseDown}
+                onMouseOverFunc={handleMouseOver}
+                index={i + 2}
+              ></TimeTableGrid>
+            );
+          }
+          return lines;
+        })()}
+        {/* end */}
 
-      {highlights.map((item) => (
-        <Highlight
-          i={item.id}
-          mouseUp={handleMouseUp}
-          popUp={item.popUp}
-          handleCancel={handleCancel}
-          handleConfirm={handleConfirm}
-        />
-      ))}
+        {highlights.map((item) => (
+          <Highlight
+            i={item.id}
+            mouseUp={handleMouseUp}
+            popUp={item.popUp}
+            handleCancel={handleCancel}
+            handleConfirm={handleConfirm}
+          />
+        ))}
 
-      {tasks.map((item) => (
-        <TimeTableEventButton
-          handlMouseEnter={handleReset}
-          se={item.se}
-          ss={item.ss}
-          color={item.color}
-          text={item.text}
-          deleteIndex={handleDeleteGetIndexe}
-          deleteTask={handleDeleteTask}
-        />
-      ))}
-    </div>
+        {tasks.map((item) => (
+          <TimeTableEventButton
+            handlMouseEnter={handleReset}
+            se={item.se}
+            ss={item.ss}
+            color={item.color}
+            text={item.text}
+            deleteIndex={handleDeleteGetIndex}
+            deleteTask={handleDeleteTask}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 
