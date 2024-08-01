@@ -1,6 +1,8 @@
 import React from "react";
+import Popup from "reactjs-popup";
+import CreateTaskPopUp from "./CreateTaskPopUp";
 
-const Highlight = ({ i, mouseUp }) => {
+const Highlight = ({ i, mouseUp, popUp, handleConfirm, handleCancel }) => {
   return (
     <div
       className="Highlight"
@@ -8,10 +10,15 @@ const Highlight = ({ i, mouseUp }) => {
       style={{
         gridRow: i + "/" + (i + 1),
         gridColumn: "1/2",
-        backgroundColor: "rgba(127,0,255,0.2)",
-        zIndex: "0",
       }}
-    ></div>
+    >
+      {popUp && (
+        <CreateTaskPopUp
+          handleCancel={handleCancel}
+          handleConfirm={handleConfirm}
+        />
+      )}
+    </div>
   );
 };
 

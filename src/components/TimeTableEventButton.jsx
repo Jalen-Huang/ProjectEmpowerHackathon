@@ -25,7 +25,7 @@ const TimeTableEventButton = ({
         onClick={deleteTask}
         onMouseDown={(e) => deleteIndex(e, ss)}
       ></button>
-      <p>{text.length > 15 ? text.substring(0, 15) + "..." : text}</p>
+      <p>{text}</p>
     </div>
   );
 };

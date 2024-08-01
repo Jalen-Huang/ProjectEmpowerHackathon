@@ -5,7 +5,7 @@ import HourLegend from "./HourLegend";
 import DayHeader from "./DayHeader";
 
 const TimeTable = () => {
-  const days = ["MON", "TUE", "WED", "THU", "FRi"];
+  const days = ["MON", "TUE", "WED", "THU", "FRI"];
 
   return (
     <div className="TimeTable">
