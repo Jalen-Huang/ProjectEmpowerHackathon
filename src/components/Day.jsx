@@ -6,14 +6,11 @@ import TimeTableGrid from "./TimeTableGrid";
 import DayHeader from "./DayHeader";
 import Highlight from "./Highlight";
 
-const Day = ({ hours, day }) => {
+const Day = ({ hours, day, can, setCan }) => {
   const [tasks, setTasks] = useState([]);
   const [highlights, setHighlights] = useState([]);
-  const [startIndex, setStartIndex] = useState(-1);
   const [mouseDown, setMouseDown] = useState(false);
-  const [endIndex, setEndIndex] = useState(-1);
   const [deleteIndex, setDeleteIndex] = useState(-1);
-  const [showPopUp, setShowPopUp] = useState(false);
   const [maxVal, setMaxVal] = useState(0);
   const [minVal, setMinVal] = useState(0);
 
@@ -40,17 +37,16 @@ const Day = ({ hours, day }) => {
         }
       }
       for (let i = 0; i < highlights.length; i++) {
-        if (highlights[i].id > highlights[min].id) {
+        if (highlights[i].id > highlights[max].id) {
           max = i;
         }
       }
       setMaxVal(highlights[max].id);
       setMinVal(highlights[min].id);
-      console.log(min);
-      console.log(max);
 
       let id = highlights[min].id;
       setHighlights(highlights.toSpliced(min, 1, { id: id, popUp: true }));
+      setCan(false);
       //console.log(id);
     }
 
@@ -60,21 +56,21 @@ const Day = ({ hours, day }) => {
   let handleMouseOver = (event, index) => {
     if (mouseDown) {
       setHighlights(highlights.concat({ id: index }));
-      setEndIndex(index);
     }
-    // console.log(highlights);
   };
 
   let handleMouseDown = (event, index) => {
-    setMouseDown(true);
-    setStartIndex(index);
-    setEndIndex(index);
-    setHighlights(highlights.concat({ id: index, popUp: false }));
+    if (can) {
+      setMouseDown(true);
+      setHighlights(highlights.concat({ id: index, popUp: false }));
+    }
   };
 
   let handleReset = (event) => {
-    setMouseDown(false);
-    setHighlights([]);
+    if (can) {
+      setMouseDown(false);
+      setHighlights([]);
+    }
   };
 
   let handleConfirm = (event, color, text) => {
@@ -86,16 +82,16 @@ const Day = ({ hours, day }) => {
         text: text,
       })
     );
+    setCan(true);
     console.log(text);
     setHighlights([]);
     setMouseDown(false);
-    // console.log(maxVal);
-    // console.log(minVal);
   };
 
   let handleCancel = (event) => {
     setHighlights([]);
     setMouseDown(false);
+    setCan(true);
   };
 
   // Handle highlight
