@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import TimeTableEventButton from "./TimeTableEventButton";
@@ -13,6 +13,19 @@ const Day = ({ hours, day, can, setCan }) => {
   const [deleteIndex, setDeleteIndex] = useState(-1);
   const [maxVal, setMaxVal] = useState(0);
   const [minVal, setMinVal] = useState(0);
+
+  useEffect(() => {
+    const localTask = JSON.parse(localStorage.getItem(day));
+    if (localTask) {
+      setTasks(localTask);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (tasks.length > 0) {
+      localStorage.setItem(day, JSON.stringify(tasks));
+    }
+  }, [tasks]);
 
   // Delete tasks from worklist
   let handleDeleteTask = (event) => {

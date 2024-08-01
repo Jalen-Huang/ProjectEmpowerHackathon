@@ -3,7 +3,7 @@ import { HexColorInput, HexColorPicker } from "react-colorful";
 
 const CreateTaskPopUp = ({ handleConfirm, handleCancel }) => {
   const [val, setVal] = useState();
-  const [color, setColor] = useState("#DEF2F1");
+  const [color, setColor] = useState("#2B7A78");
   const [picker, setPicker] = useState(false);
 
   const change = (event) => {
