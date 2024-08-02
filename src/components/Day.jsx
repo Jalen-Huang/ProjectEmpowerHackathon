@@ -5,6 +5,7 @@ import TimeTableEventButton from "./TimeTableEventButton";
 import TimeTableGrid from "./TimeTableGrid";
 import DayHeader from "./DayHeader";
 import Highlight from "./Highlight";
+import { useHalfHourContext } from "./HalfHourContext";
 
 const Day = ({ hours, day, can, setCan }) => {
   const [tasks, setTasks] = useState([]);
@@ -14,6 +15,8 @@ const Day = ({ hours, day, can, setCan }) => {
   const [maxVal, setMaxVal] = useState(0);
   const [minVal, setMinVal] = useState(0);
   const [moved, setMoved] = useState(false);
+
+  const halfHour = useHalfHourContext();
 
   useEffect(() => {
     const localTask = JSON.parse(localStorage.getItem(day));
@@ -121,7 +124,14 @@ const Day = ({ hours, day, can, setCan }) => {
 
   return (
     <>
-      <div className="Day" onMouseLeave={handleReset}>
+      <div
+        className="Day"
+        onMouseLeave={handleReset}
+        style={{
+          gridTemplateRows:
+            "100px repeat(" + halfHour.hour + ", " + halfHour.size + ")",
+        }}
+      >
         <DayHeader>{day}</DayHeader>
         <div className="test"></div>
         {/* creates grid and add indices */}

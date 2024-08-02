@@ -3,12 +3,15 @@ import "./TimeTable.css";
 import Day from "./Day";
 import HourLegend from "./HourLegend";
 import DayHeader from "./DayHeader";
+import { useWeekendContext } from "./WeekendContext";
+import { useHalfHourContext } from "./HalfHourContext";
 
 const TimeTable = () => {
   const days = ["SAT", "MON", "TUE", "WED", "THU", "FRI", "SUN"];
   const days2 = ["MON", "TUE", "WED", "THU", "FRI"];
   const [can, setCan] = useState(true);
-  const [weekend, setWeekend] = useState(false);
+  const weekend = useWeekendContext();
+  const halfHour = useHalfHourContext();
 
   let handleCan = (val) => {
     setCan(val);
@@ -19,10 +22,20 @@ const TimeTable = () => {
       <HourLegend />
       {weekend
         ? days.map((item) => (
-            <Day hours={24} day={item} can={can} setCan={handleCan} />
+            <Day
+              hours={halfHour.hour}
+              day={item}
+              can={can}
+              setCan={handleCan}
+            />
           ))
         : days2.map((item) => (
-            <Day hours={24} day={item} can={can} setCan={handleCan} />
+            <Day
+              hours={halfHour.hour}
+              day={item}
+              can={can}
+              setCan={handleCan}
+            />
           ))}
     </div>
   );
