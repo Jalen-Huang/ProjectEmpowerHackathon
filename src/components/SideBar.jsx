@@ -15,7 +15,7 @@ const SideBar = () => {
   const Back = () => {
     setPage("main");
   }
-  const [page, setPage] = useState(JSON.parse(localStorage.getItem("page")));
+  const [page, setPage] = useState("main");
 
   useEffect(() => {
     const localPage = JSON.parse(localStorage.getItem("page"));
