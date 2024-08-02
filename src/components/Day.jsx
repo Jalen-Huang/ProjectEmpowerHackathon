@@ -13,6 +13,7 @@ const Day = ({ hours, day, can, setCan }) => {
   const [deleteIndex, setDeleteIndex] = useState(-1);
   const [maxVal, setMaxVal] = useState(0);
   const [minVal, setMinVal] = useState(0);
+  const [moved, setMoved] = useState(false);
 
   useEffect(() => {
     const localTask = JSON.parse(localStorage.getItem(day));
@@ -22,7 +23,7 @@ const Day = ({ hours, day, can, setCan }) => {
   }, []);
 
   useEffect(() => {
-    if (tasks.length > 0) {
+    if (moved) {
       localStorage.setItem(day, JSON.stringify(tasks));
     }
   }, [tasks]);
@@ -73,6 +74,11 @@ const Day = ({ hours, day, can, setCan }) => {
     if (mouseDown) {
       setHighlights(highlights.concat({ id: index }));
     }
+    setMoved(true);
+  };
+
+  let handleEnter = (e) => {
+    setMoved(true);
   };
 
   let handleMouseDown = (event, index) => {
@@ -86,6 +92,7 @@ const Day = ({ hours, day, can, setCan }) => {
     if (can) {
       setMouseDown(false);
       setHighlights([]);
+      setMoved(true);
     }
   };
 
@@ -143,6 +150,7 @@ const Day = ({ hours, day, can, setCan }) => {
             popUp={item.popUp}
             handleCancel={handleCancel}
             handleConfirm={handleConfirm}
+            handleOver={handleEnter}
           />
         ))}
 
