@@ -8,7 +8,6 @@ import { useHalfHourContext } from "./HalfHourContext";
 
 const TimeTable = () => {
   const days = ["SAT", "MON", "TUE", "WED", "THU", "FRI", "SUN"];
-  const days2 = ["MON", "TUE", "WED", "THU", "FRI"];
   const [can, setCan] = useState(true);
   const weekend = useWeekendContext();
   const halfHour = useHalfHourContext();
@@ -20,23 +19,9 @@ const TimeTable = () => {
   return (
     <div className="TimeTable">
       <HourLegend />
-      {weekend
-        ? days.map((item) => (
-            <Day
-              hours={halfHour.hour}
-              day={item}
-              can={can}
-              setCan={handleCan}
-            />
-          ))
-        : days2.map((item) => (
-            <Day
-              hours={halfHour.hour}
-              day={item}
-              can={can}
-              setCan={handleCan}
-            />
-          ))}
+      {days.map((item) => (
+        <Day hours={halfHour.hour} day={item} can={can} setCan={handleCan} />
+      ))}
     </div>
   );
 };

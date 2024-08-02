@@ -1,3 +1,13 @@
+.Header {
+    background-color: aquamarine;
+    color: white; 
+    position: fixed;
+    width: 11%;
+    height: 100px;
+    z-index: 20;
+}
+
+
 .SideBar, .TimeTable {
     height: 100vh;
 
@@ -7,7 +17,7 @@
 .HourLegend {
     display: grid;
     grid-template-rows: repeat(24, 100px);
-    padding-top: 6.5%;
+    padding-top: 4.5em;
     display: grid;
     text-align: center;
     color: #3AAFA9;
@@ -20,7 +30,7 @@
 
 .PopUp {
     width: 100%;
-    height: 150%;
+    height: 10em;
     background-color: #3AAFA9;
     border: 3px solid #2B7A78;
     position: absolute;
@@ -123,20 +133,16 @@
     text-align: center;
     background-color: rgb(245, 245, 245);
     width: 100%;
-
     border-left: 2px solid white;
     display: grid;
     grid-template-columns: 100%;
-    grid-auto-flow: column;
 
 }
 
-.DayHeader {
-    grid-area: 1/1/2/2;
-    background-color: aquamarine;
-    color: white; 
-    position: fixed;
 
+
+.DayContainer {
+    background-color: black;
 }
 
 .Highlight {

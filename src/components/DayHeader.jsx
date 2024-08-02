@@ -1,18 +1,9 @@
 import React from "react";
+import "./TimeTable.css";
 
 const DayHeader = ({ children }) => {
   return (
-    <div
-      ClassName="DayHeader"
-      style={{
-        color: "white",
-        backgroundColor: "#3AAFA9",
-        position: "sticky",
-        display: "top",
-        width: "100%",
-        height: "100px",
-      }}
-    >
+    <div className="Header">
       <h1>{children}</h1>
     </div>
   );
