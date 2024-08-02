@@ -1,7 +1,12 @@
-.Temp {
-    color: #17252A;
+:root {
+    --font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.App {
+    /* color: #17252A;
     color: #2B7A78;
     color: #3AAFA9;
     color: #DEF2F1;
-    color: #FEFFFF;
+    color: #FEFFFF; */
+    font-family: var(--font-family);
 }
