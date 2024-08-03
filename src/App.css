@@ -1,12 +1,16 @@
 :root {
-    --font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    --font-family: "Franklin Gothic Medium";
+    --primary: #2B7A78;
+    --secondary: #3AAFA9;
+    --secondaryTransparent: #3AAFA901;
+    --tertiary: #DEF2F1;
+    --quarternary: #17252A;
+    --quinary: #FEFFFF;
+
+    --scroll: visible;
 }
 
 .App {
-    /* color: #17252A;
-    color: #2B7A78;
-    color: #3AAFA9;
-    color: #DEF2F1;
-    color: #FEFFFF; */
+    
     font-family: var(--font-family);
 }

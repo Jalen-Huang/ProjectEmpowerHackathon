@@ -18,6 +18,9 @@ const Day = ({ hours, day, can, setCan }) => {
 
   const halfHour = useHalfHourContext();
 
+  var root = document.querySelector(':root');
+  
+
   useEffect(() => {
     const localTask = JSON.parse(localStorage.getItem(day));
     if (localTask) {
@@ -51,6 +54,7 @@ const Day = ({ hours, day, can, setCan }) => {
     let min = 0;
     let max = 0;
     if (mouseDown) {
+      
       for (let i = 0; i < highlights.length; i++) {
         if (highlights[i].id < highlights[min].id) {
           min = i;
@@ -88,6 +92,7 @@ const Day = ({ hours, day, can, setCan }) => {
     if (can) {
       setMouseDown(true);
       setHighlights(highlights.concat({ id: index, popUp: false }));
+      root.style.setProperty("--scroll", "hidden")
     }
   };
 
@@ -112,12 +117,14 @@ const Day = ({ hours, day, can, setCan }) => {
     console.log(text);
     setHighlights([]);
     setMouseDown(false);
+    root.style.setProperty("--scroll", "visible")
   };
 
   let handleCancel = (event) => {
     setHighlights([]);
     setMouseDown(false);
     setCan(true);
+    root.style.setProperty("--scroll", "visible")
   };
 
   // Handle highlight

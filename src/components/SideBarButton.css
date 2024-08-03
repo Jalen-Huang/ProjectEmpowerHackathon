@@ -1,14 +1,13 @@
 .SideBarButton {
-    background-color: #DEF2F1;
-    color: #2B7A78;
+    background-color: var(--tertiary);
+    color: var(--primary);
     padding: 5px 15px;
     border-radius: 8px;
-    border: 4px solid #2B7A78;
+    border: 4px solid var(--primary);
     text-transform: uppercase;
     font-weight: bold;
     font-size: 16px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    letter-spacing: 1px;
+    font-family: inherit;
     margin: 10px 0px;
     cursor: pointer;
     box-shadow: 0px 2px 2px lightgray;
@@ -17,8 +16,8 @@
 }
 
 .SideBarButton:hover {
-    color: #FEFFFF;
-    background-color: #2B7A78;
+    color: var(--tertiary);
+    background-color: var(--primary);
 
     rect {
         fill: none;

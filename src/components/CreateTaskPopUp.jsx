@@ -35,7 +35,7 @@ const CreateTaskPopUp = ({ handleConfirm, handleCancel }) => {
       </div>
       {picker && (
         <HexColorPicker
-          style={{ width: "100%" }}
+          style={{ width: "15em", height: "10em", position: "absolute" }}
           className="HexColorPicker"
           color={color}
           onChange={setColor}
