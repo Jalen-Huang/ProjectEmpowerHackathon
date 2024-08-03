@@ -16,8 +16,6 @@ const Day = ({ hours, day, can, setCan }) => {
   const [minVal, setMinVal] = useState(0);
   const [moved, setMoved] = useState(false);
 
-  const halfHour = useHalfHourContext();
-
   var root = document.querySelector(':root');
   
 
@@ -134,10 +132,6 @@ const Day = ({ hours, day, can, setCan }) => {
       <div
         className="Day"
         onMouseLeave={handleReset}
-        style={{
-          gridTemplateRows:
-            "100px repeat(" + halfHour.hour + ", " + halfHour.size + ")",
-        }}
       >
         <DayHeader>{day}</DayHeader>
         <div className="test"></div>

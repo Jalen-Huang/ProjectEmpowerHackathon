@@ -72,13 +72,6 @@ const SideBar = () => {
     localStorage.setItem("quinary", JSON.stringify("#B39BC8"))
   }
 
-  const HalfHourToggle = () => {
-    if (halfHour.hour === 24) {
-      setHalfHour({ hour: 48, size: "50px" });
-    } else {
-      setHalfHour({ hour: 24, size: "100px" });
-    }
-  };
   const Back = () => {
     setPage("main");
   };
@@ -141,10 +134,6 @@ const SideBar = () => {
 
       {page == "page2" && <SideBarButton onClick={ColdColors}>Cold Colors</SideBarButton>}
       {page == "page2" && <SideBarButton onClick={WarmColors}>Warm Colors</SideBarButton>}
-
-      {page == "main" && (
-        <SideBarButton onClick={HalfHourToggle}>Half Hour Toggle</SideBarButton>
-      )}
       {!(page == "main") && <SideBarButton onClick={Back}>Back</SideBarButton>}
     </div>
   );
